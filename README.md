@@ -6,6 +6,7 @@
 ## 就職Termの技術
 * gem devise
 * 1対1のメッセージ機能
+* フォロー機能
 ## カリキュラム外の技術
 * Natural Languadge
 * gem rails_admin
