@@ -1,2 +1,33 @@
-<h1>こんにちは、<%= current_user.email %>さん</h1>
-<p>ユーザー用ページです。</p>
+<h1>こんにちは、<%= current_user.email %>さんのマイページです</h1>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>アイコン</th>
+        <th>名前</th>
+        <th>性別</th>
+        <th>Age</th>
+        <th>Work</th>
+        <th>Hobby</th>
+        <th>Likes</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+          <tr>
+            <td><%= @profile.icon %></td>
+            <td><%= @profile.name %></td>
+            <td><%= @profile.sex %></td>
+            <td><%= @profile.age %>歳</td>
+            <td><%= @profile.work %></td>
+            <td><%= @profile.hobby %></td>
+            <td><%= @profile.likes %></td>
+            <td><%= @profile.comment %></td>
+
+            <td><%= link_to '戻る', root_path %></td>
+          </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,76 @@
+<%# <h1>相性度： <%= @compatibility_percentage%</h1> %>
+<%# <% @questions.each do |t| %>
+  <%# <% if t.number == 1 %>
+    <%# <% if t.answer == @answer %>
+      <%# <% @compatibility_percentage += 1 %>
+    <%# <% end %>
+  <%# <% else %>
+    <%# <% if t.answer == @answer %>
+      <%# <% @compatibility_percentage += 1 %>
+    <%# <% end %>
+  <%# <% end %>
+<%# <% end %>
+
+<%# <% if @compatibility_percentage >= 3 %>
+  <%# <% @compatibility_percentage = 100 %>
+<%# <% else %>
+  <%# <% @compatibility_percentage = (@compatibility_percentage.to_f / 3) * 100 %>
+<%# <% end %>
+<%# <h1>相性度： <%= @compatibility_percentage%</h1> %>
+
+
+<%# <% if current_user.following?(@profile.user) %>
+  <%# <%= link_to "フォロー外す", user_relationships_path(@profile.user), method: :delete %>
+<%# <% else %>
+  <%# <%= link_to "フォローする", user_relationships_path(@profile.user), method: :post %>
+<%# <% end %>
+
+<%# <% if current_user.following?(@profile.user) && @profile.user.following?(current_user) %>
+  <%# <%= link_to 'DMを始める', message_path(@profile.user.id), class: "ml-3" %>
+<%# <% end %>
+
+<h1>クリックしたプロフィール詳細情報</h1>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>性別</th>
+        <th>Icon</th>
+        <th>Age</th>
+        <th>Work</th>
+        <th>Hobby</th>
+        <th>Likes</th>
+        <th>Free</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+          <tr>
+            <td><%= @profile.icon %></td>
+            <td><%= @profile.name %></td>
+            <td><%= @profile.sex %></td>
+            <td><%= @profile.age %></td>
+            <td><%= @profile.work %></td>
+            <td><%= @profile.hobby %></td>
+            <td><%= @profile.likes %></td>
+            <td><%= @profile.comment %></td>
+            <td><%= link_to 'Edit', edit_profile_path(@profile) %></td>
+            <td><%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+    </tbody>
+  </table>
+
+
+
+<br>
+<%# <%= link_to 'メッセージ一覧', room_path(@profile) %>
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
+<br>
+
+<%# <%= link_to 'AIにニックネームをつけてもらう', chatbots_path(@profile) %>
+
