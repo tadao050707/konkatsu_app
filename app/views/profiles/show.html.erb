@@ -31,18 +31,22 @@
 
 <h1>クリックしたプロフィール詳細情報</h1>
 
+<% if @profile.icon.present? %>
+  <%= image_tag @profile.icon.url, class: 'profile-icon' %>
+<% else %>
+  <% default_icon = Profile.default_icons.sample %>
+  <%= image_tag default_icon, class: 'profile-icon' %>
+<% end %>
 
   <table>
     <thead>
       <tr>
         <th>名前</th>
-        <th>性別</th>
-        <th>Icon</th>
         <th>Age</th>
         <th>Work</th>
         <th>Hobby</th>
         <th>Likes</th>
-        <th>Free</th>
+
         <th>Comment</th>
       </tr>
     </thead>
@@ -50,10 +54,8 @@
 
     <tbody>
           <tr>
-            <td><%= @profile.icon %></td>
             <td><%= @profile.name %></td>
-            <td><%= @profile.sex %></td>
-            <td><%= @profile.age %></td>
+            <td><%= @profile.age %>歳</td>
             <td><%= @profile.work %></td>
             <td><%= @profile.hobby %></td>
             <td><%= @profile.likes %></td>

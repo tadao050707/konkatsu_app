@@ -1,40 +1,30 @@
 <h1>参加者一覧</h1>
 
+<table>
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <% if current_user.profile && current_user.profile.sex != profile.sex %>
+        <tr>
+          <td>
+            <% if profile.icon.present? %>
+              <%= link_to profile_path(profile) do %>
+              <%= image_tag profile.icon.url, class: 'profile-icon' %>
+              <% end %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>名前</th>
-        <th>性別</th>
-        <th>Icon</th>
-        <th>Age</th>
-        <th>Work</th>
-        <th>Hobby</th>
-        <th>Likes</th>
-        <th>Free</th>
-        <th>Comment</th>
-      </tr>
-    </thead>
-
-
-    <tbody>
-      <% @profiles.each do |profile| %>
-        <% if current_user.profile && current_user.profile.sex != profile.sex %>
-          <tr>
-            <td><%= profile.icon %></td>
-            <td><%= profile.name %></td>
-            <td><%= profile.sex %></td>
-            <td><%= profile.age %></td>
-            <td><%= profile.work %></td>
-            <td><%= profile.hobby %></td>
-            <td><%= profile.likes %></td>
-            <td><%= profile.comment %></td>
-            <td><%= link_to 'Show', profile %></td>
-            <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-            <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
+              <% else %>
+              <% default_icon = Profile.default_icons.sample %>
+                <%= link_to profile_path(profile) do %>
+                <%= image_tag default_icon, class: 'profile-icon' %>
+                <% end %>
+              <% end %>
+            <br>
+            <%= profile.name %>
+          </td>
+          <td><%= link_to 'Show', profile_path(profile) %></td>
+          <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+          <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
       <% end %>
-    </tbody>
-  </table>
-
+    <% end %>
+  </tbody>
+</table>

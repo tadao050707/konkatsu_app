@@ -1,10 +1,12 @@
-<h1>こんにちは、<%= current_user.email %>さんのマイページです</h1>
+<h1><%= current_user.profile.name %>さんのマイページです</h1>
 
+  <div class="profile-icon">
+    <%= image_tag @profile.icon.url %>
+  </div>
 
   <table>
     <thead>
       <tr>
-        <th>アイコン</th>
         <th>名前</th>
         <th>性別</th>
         <th>Age</th>
@@ -18,7 +20,6 @@
 
     <tbody>
           <tr>
-            <td><%= @profile.icon %></td>
             <td><%= @profile.name %></td>
             <td><%= @profile.sex %></td>
             <td><%= @profile.age %>歳</td>
@@ -26,7 +27,7 @@
             <td><%= @profile.hobby %></td>
             <td><%= @profile.likes %></td>
             <td><%= @profile.comment %></td>
-
+            <td><%= link_to '編集', edit_profile_path(@profile) %></td>
             <td><%= link_to '戻る', root_path %></td>
           </tr>
     </tbody>

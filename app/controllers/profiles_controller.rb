@@ -22,12 +22,13 @@ class ProfilesController < ApplicationController
 
 
   def show
-    @profile = Profile.find(params[:id])
+      @profile = Profile.find(params[:id])
+      @icon_url = @profile.icon.present? ? @profile.icon.url : Profile.default_icons.sample
   end
 
   def new
     if current_user.profile.nil?
-      @profile = Profile.new
+      @profile = Profile.new(name: "名無し")
     else
       redirect_to profile_path(current_user.profile)
     end
@@ -40,9 +41,13 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
 
+    if @profile.icon.blank?
+      @profile.icon = Profile.default_icons.sample
+    end
+
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to profile_url(@profile), notice: "Profile was successfully created." }
+        format.html { redirect_to pages_show_path(current_user), notice: "Profile was successfully created." }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,7 +59,7 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to profile_url(@profile), notice: "Profile was successfully updated." }
+        format.html { redirect_to pages_show_path(current_user), notice: "Profile was successfully updated." }
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -79,7 +84,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit(:icon, :age, :work, :hobby, :likes, :free, :comment, :sex)
+      params.require(:profile).permit(:icon, :name, :age, :work, :hobby, :likes, :free, :comment, :sex)
     end
 
     def after_sign_out_path_for(resource_or_scope)

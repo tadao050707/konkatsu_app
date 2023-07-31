@@ -4,7 +4,7 @@
       <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
       <% if current_user.present? %>
-        <p>こんにちは、<%= current_user.name %>さん！</p>
+        <p>こんにちは、<%= current_user.profile.name %>さん！</p>
       <% else %>
         <p>こんにちは、ゲストさん！</p>
       <% end %>
@@ -17,10 +17,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :icon %>
-    <%= form.text_area :icon %>
-  </div>
+<div class="field">
+  <%= form.label :icon, "プロフィール画像" %>
+  <%= form.file_field :icon %>
+</div>
 
   <div class="field">
     <%= form.label :name %>
