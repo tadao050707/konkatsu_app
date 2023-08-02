@@ -50,10 +50,10 @@
             <td><%= @profile.hobby %></td>
             <td><%= @profile.likes %></td>
             <td><%= @profile.comment %></td>
-             <% if @profile.user == current_user %>
+            <% if @profile.user == current_user %>
             <td><%= link_to 'Edit', edit_profile_path(@profile) %></td>
             <td><%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-             <% else %>
+            <% else %>
           <td></td>
           <td></td>
           <% end %>

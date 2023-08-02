@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if current_user.try(:admin?) %>
+    <%= link_to '管理者ログイン', rails_admin_path %>
+    <% end %>
     <% if user_signed_in? %>
       <%= link_to "プロフィール一覧", profiles_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

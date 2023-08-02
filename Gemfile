@@ -18,6 +18,8 @@ gem "jquery-rails"
 gem 'pry-rails'
 gem "ruby-openai"
 gem 'dotenv'
+gem 'cancancan'
+gem 'rails_admin'
 
 
 group :development, :test do
