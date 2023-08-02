@@ -22,8 +22,8 @@ class ProfilesController < ApplicationController
 
 
   def show
-      @profile = Profile.find(params[:id])
-      @icon_url = @profile.icon.present? ? @profile.icon.url : Profile.default_icons.sample
+    @profile = Profile.find(params[:id])
+    @icon_url = @profile.icon.present? ? @profile.icon.url : Profile.default_icons.sample
   end
 
   def new

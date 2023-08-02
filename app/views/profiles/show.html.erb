@@ -56,6 +56,7 @@
     </tbody>
   </table>
 
+
 <br>
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %> |
@@ -70,6 +71,4 @@
 <% if current_user.following?(@profile.user) && @profile.user.following?(current_user) %>
   <%= link_to 'DMを始める', chat_path(@profile.user.id), class: "ml-3" %>
 <% end %>
-
-<%# <%= link_to 'AIにニックネームをつけてもらう', chatbots_path(@profile) %>
 
