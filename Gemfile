@@ -20,6 +20,7 @@ gem "ruby-openai"
 gem 'dotenv'
 gem 'cancancan'
 gem 'rails_admin'
+gem 'rails-i18n'
 
 
 group :development, :test do
