@@ -21,8 +21,13 @@
             <%= profile.name %>
           </td>
           <td><%= link_to 'Show', profile_path(profile) %></td>
+          <% if profile.user == current_user %>
           <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
           <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
         </tr>
       <% end %>
     <% end %>

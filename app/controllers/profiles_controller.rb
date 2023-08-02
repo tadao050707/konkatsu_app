@@ -35,6 +35,10 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    @profile = Profile.find(params[:id])
+    unless @profile.user == current_user
+      redirect_to profiles_path
+    end
   end
 
   def create

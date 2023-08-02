@@ -19,6 +19,7 @@ gem 'pry-rails'
 gem "ruby-openai"
 gem 'dotenv'
 
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
