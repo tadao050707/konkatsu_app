@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :profiles
   root 'profiles#index'
+  resources :chats, only: [:show, :create]
 
   resources :users do
     resource :relationships, only: [:create, :destroy]
