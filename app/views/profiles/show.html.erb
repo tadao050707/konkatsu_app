@@ -19,16 +19,6 @@
 <%# <h1>相性度： <%= @compatibility_percentage%</h1> %>
 
 
-<%# <% if current_user.following?(@profile.user) %>
-  <%# <%= link_to "フォロー外す", user_relationships_path(@profile.user), method: :delete %>
-<%# <% else %>
-  <%# <%= link_to "フォローする", user_relationships_path(@profile.user), method: :post %>
-<%# <% end %>
-
-<%# <% if current_user.following?(@profile.user) && @profile.user.following?(current_user) %>
-  <%# <%= link_to 'DMを始める', message_path(@profile.user.id), class: "ml-3" %>
-<%# <% end %>
-
 <h1>クリックしたプロフィール詳細情報</h1>
 
 <% if @profile.icon.present? %>
@@ -67,7 +57,6 @@
   </table>
 
 <br>
-<%# <%= link_to 'メッセージ一覧', room_path(@profile) %>
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %> |
 <br>
@@ -76,6 +65,10 @@
   <%= link_to "フォロー外す", user_relationships_path(@profile.user.id), method: :delete %>
 <% else %>
   <%= link_to "フォローする", user_relationships_path(@profile.user.id), method: :post %>
+<% end %>
+
+<% if current_user.following?(@profile.user) && @profile.user.following?(current_user) %>
+  <%= link_to 'DMを始める', chat_path(@profile.user.id), class: "ml-3" %>
 <% end %>
 
 <%# <%= link_to 'AIにニックネームをつけてもらう', chatbots_path(@profile) %>

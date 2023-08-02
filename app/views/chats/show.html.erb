@@ -1,0 +1,29 @@
+<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">
+<%= @chat_partner_name %> さんとのチャット</h1>
+
+  <div class="message" style="width: 400px;">
+    <% @chats.each do |chat| %>
+      <% if chat.user_id == current_user.id %>
+        <p style="text-align: right;"><%= chat.message %></p>
+      <div class="header" style="text-align: right;">
+          <% if @current_user_profile.icon.present? %>
+            <%= image_tag @current_user_profile.icon.url, alt: "アイコン", style: "width: 30px; height: 30px;" %>
+          <% end %>
+          <strong><%= @current_user_profile.name %></strong> <%= chat.message_time %>
+      </div>
+      <% else %>
+        <p style="text-align: left;"><%= chat.message %></p>
+      <div class="header" style="text-align: left;">
+        <% if @chat_partner_profile.icon.present? %>
+          <%= image_tag @chat_partner_profile.icon.url, alt: "アイコン", style: "width: 30px; height: 30px;" %>
+        <% end %>
+        <strong><%= @chat_partner_name %></strong> <%= chat.message_time %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= form_with model: @chat, data: {remote: true} do |f| %>
+    <%= f.text_field :message %>
+    <%= f.hidden_field :room_id %>
+    <%= f.submit "送信" %>
+  <% end %>
