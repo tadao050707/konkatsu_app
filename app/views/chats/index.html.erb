@@ -1,18 +1,1 @@
 <h2>メッセージ一覧</h2>
-<table class="rooms">
-  <tbody>
-    <tr>
-      <td>
-        <% @user.each do |user| %>
-          <%= link_to "#{user.name}さんとのトークルーム","/messages/#{user.id}" %>
-        <%end%>
-
-        <% if chat.user(current_user).present? %>
-          <%= link_to chat.user(current_user).name, conversation_messages_path(conversation)%>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<%= link_to("ログインページへ","/") %>
-<%= link_to("ログアウトする","/users/sign_out",method: :delete )%>

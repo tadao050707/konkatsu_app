@@ -1,12 +1,9 @@
 class ChatsController < ApplicationController
-  before_action :set_user_and_reject_non_related, only: [:show]
+  before_action :set_chat_or_reject_non_related, only: [:show]
 
 
   def index
-    @rooms = current_user.rooms
-    @chat_partner_profile = @user.profile
-    #チャット相手の名前
-    @chat_partner_name = @chat_partner_profile.name
+
   end
 
   def show
@@ -46,7 +43,7 @@ class ChatsController < ApplicationController
     params.require(:chat).permit(:message, :room_id)
   end
 
-  def set_user_and_reject_non_related
+  def set_chat_or_reject_non_related
     @user = User.find(params[:id])
     reject_non_related unless current_user.following?(@user) && @user.following?(current_user)
   end
