@@ -24,6 +24,19 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     @icon_url = @profile.icon.present? ? @profile.icon.url : Profile.default_icons.sample
+
+    @user_answers = current_user.answers.includes(:question)
+    @profile_answers = @profile.user.answers.includes(:question)
+
+    # 質問ごとに一致している回答をカウント
+    @compatibility_score = 0
+    @user_answers.each_with_index do |user_answer, index|
+      @compatibility_score += 1 if user_answer.response == @profile_answers[index].response
+    end
+
+    # 相性率を計算
+    total_score = @user_answers.length
+    @compatibility_percentage = (@compatibility_score.to_f / total_score * 100).round(2)
   end
 
   def new
@@ -85,15 +98,15 @@ class ProfilesController < ApplicationController
 
   def set_profile
       @profile = Profile.find(params[:id])
-    end
+  end
 
-    def profile_params
-      params.require(:profile).permit(:icon, :name, :age, :work, :hobby, :likes, :free, :comment, :sex)
-    end
+  def profile_params
+    params.require(:profile).permit(:icon, :name, :age, :work, :hobby, :likes, :free, :comment, :sex)
+  end
 
-    def after_sign_out_path_for(resource_or_scope)
-      new_user_session_path
-    end
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
+  end
 end
 
 

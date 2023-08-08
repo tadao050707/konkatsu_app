@@ -1,24 +1,3 @@
-<%# <h1>相性度： <%= @compatibility_percentage%</h1> %>
-<%# <% @questions.each do |t| %>
-  <%# <% if t.number == 1 %>
-    <%# <% if t.answer == @answer %>
-      <%# <% @compatibility_percentage += 1 %>
-    <%# <% end %>
-  <%# <% else %>
-    <%# <% if t.answer == @answer %>
-      <%# <% @compatibility_percentage += 1 %>
-    <%# <% end %>
-  <%# <% end %>
-<%# <% end %>
-
-<%# <% if @compatibility_percentage >= 3 %>
-  <%# <% @compatibility_percentage = 100 %>
-<%# <% else %>
-  <%# <% @compatibility_percentage = (@compatibility_percentage.to_f / 3) * 100 %>
-<%# <% end %>
-<%# <h1>相性度： <%= @compatibility_percentage%</h1> %>
-
-
 <h1>クリックしたプロフィール詳細情報</h1>
 
 <% if @profile.icon.present? %>
@@ -27,6 +6,9 @@
   <% default_icon = Profile.default_icons.sample %>
   <%= image_tag default_icon, class: 'profile-icon' %>
 <% end %>
+
+<h2><%= @profile.name %>さんとの相性</h2>
+<p>相性率: <%= @compatibility_percentage %>%</p>
 
   <table>
     <thead>

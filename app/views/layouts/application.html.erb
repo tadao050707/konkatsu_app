@@ -18,7 +18,7 @@
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <%= link_to "マイページ", pages_show_path(current_user) %>
       <%= link_to "メッセージ一覧", chats_path(current_user) %>
-      <%# <%= link_to "相性診断", new_question_path(current_user) %>
+      <%= link_to "相性診断", new_answer_path(current_user) %>
     <% else %>
       <%= link_to "新規登録", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>
