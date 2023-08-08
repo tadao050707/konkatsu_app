@@ -25,8 +25,8 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
     @icon_url = @profile.icon.present? ? @profile.icon.url : Profile.default_icons.sample
 
-    @user_answers = current_user.answers.includes(:question)
-    @profile_answers = @profile.user.answers.includes(:question)
+    @user_answers = current_user.answers
+    @profile_answers = @profile.user.answers
 
     # 質問ごとに一致している回答をカウント
     @compatibility_score = 0
@@ -64,7 +64,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to new_answer_path(current_user), notice: "Profile was successfully created." }
+        format.html { redirect_to new_answer_path, notice: "Profile was successfully created." }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new, status: :unprocessable_entity }
