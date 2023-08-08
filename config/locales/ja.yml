@@ -22,6 +22,15 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+
+  devise:
+  registrations:
+    signed_up: 'ユーザーが登録されました。'
+    user:
+      signed_up_but_unconfirmed: 'ユーザーが登録されましたが、確認メールを送信して確認してください。'
+      signed_up_but_inactive: 'ユーザーが登録されましたが、アカウントは無効です。'
+      signed_up_but_locked: 'ユーザーが登録されましたが、アカウントはロックされています。'
+
   date:
     abbr_day_names:
     - 日

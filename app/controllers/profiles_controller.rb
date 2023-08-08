@@ -51,7 +51,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to pages_show_path(current_user), notice: "Profile was successfully created." }
+        format.html { redirect_to new_answer_path(current_user), notice: "Profile was successfully created." }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -1,0 +1,15 @@
+<h2><%= @profile.name %>さんの質問と回答</h2>
+
+<%= form_for @answers do |f| %>
+  <% @questions.each_with_index do |question, index| %>
+    <div class="question">
+      <p><%= question %></p>
+      <%= f.hidden_field :question_id, value: index + 1 %>
+      <%= f.radio_button :response, true, name: "answers[#{index}][response]" %>
+      <%= f.label :response, 'はい' %>
+      <%= f.radio_button :response, false, name: "answers[#{index}][response]" %>
+      <%= f.label :response, 'いいえ' %>
+    </div>
+  <% end %>
+  <%= f.submit '回答する' %>
+<% end %>

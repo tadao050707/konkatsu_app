@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'profiles#index'
   resources :chats, only: [:show, :create, :index]
   resources :chatbots, only: [:index]
+  resources :answers, only: [:new, :create]
 
   resources :users do
     resource :relationships, only: [:create, :destroy]

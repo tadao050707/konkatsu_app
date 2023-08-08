@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  #相性診断
+  has_many :questions
+  has_many :answers
+
   #DM機能
   has_many :user_rooms
   has_many :chats
